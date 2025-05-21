@@ -15,8 +15,8 @@ bl_info = {
     "name": "TRE3D Tools",
     "author": "7Bajwa",
     "description": " Some Useful Pipeline tools",
-    "blender": (3, 3, 0),
-    "version": (0, 0, 1),
+    "blender": (4, 4, 0),
+    "version": (0, 0, 2),
     "location": "View3D",
     "warning": "",
     "category": "Development",
@@ -27,7 +27,7 @@ import bpy, os, sys
 from .t3d_panel import (
     T3D_PT_Tools,
     T3D_PT_Obj,
-    T3D_PT_Obj_Grab,
+    # T3D_PT_Obj_Grab,
     T3D_PT_Mesh,
     T3D_PT_UVS
 )
@@ -42,10 +42,14 @@ from .ops.t3d_ops_misc import (
 )
 
 from .ops.t3d_ops_obj import (
-    T3D_OT_Grabshot_ref,
-    T3D_OT_Grabshot
+    T3D_OT_UnSubdiv
+    # T3D_OT_Grabshot_ref,
+    # T3D_OT_Grabshot
 )
 
+from .ops.t3d_ops_mesh import (
+    T3D_OT_UnLoop
+)
 
 PROPS_Obj = [
     ('snap_folder', bpy.props.StringProperty(name="Snap Folder", subtype="DIR_PATH", default="")),
@@ -59,7 +63,7 @@ reg_classes = [
     #Panels
     T3D_PT_Tools,
     T3D_PT_Obj,
-    T3D_PT_Obj_Grab,
+    # T3D_PT_Obj_Grab,
     T3D_PT_Mesh,
     T3D_PT_UVS,
 
@@ -72,8 +76,12 @@ reg_classes = [
     T3D_OT_PackedModel,
 
     # Object Operators
-    T3D_OT_Grabshot_ref,
-    T3D_OT_Grabshot
+    T3D_OT_UnSubdiv,
+    # T3D_OT_Grabshot_ref,
+    # T3D_OT_Grabshot,
+
+    # Mesh Operators
+    T3D_OT_UnLoop,    
 ]
 
 

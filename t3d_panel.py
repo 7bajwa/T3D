@@ -12,9 +12,14 @@ from .ops.t3d_ops_misc import (
 )
 
 from .ops.t3d_ops_obj import (
-    T3D_obj_Props,
-    T3D_OT_Grabshot_ref,
-    T3D_OT_Grabshot
+    T3D_OT_UnSubdiv,
+    # T3D_obj_Props,
+    # T3D_OT_Grabshot_ref,
+    # T3D_OT_Grabshot
+)
+
+from .ops.t3d_ops_mesh import (
+    T3D_OT_UnLoop,
 )
 
 
@@ -58,35 +63,38 @@ class T3D_PT_Obj(T3D_PanelInfo, Panel):
     bl_label = "Objects"
 
     def draw(self, context):
+        layout = self.layout
+        row = layout.row(align=True)
+        row.operator(T3D_OT_UnSubdiv.bl_idname, icon="MESH_GRID")
 
         return {"FINISHED"}
 
 
-class T3D_PT_Obj_Grab(T3D_PanelInfo, Panel):
-    bl_idname = "T3D_PT_obj_grab"
-    bl_label = "Grabshot"
-    bl_parent_id = "T3D_PT_obj"
+# class T3D_PT_Obj_Grab(T3D_PanelInfo, Panel):
+#     bl_idname = "T3D_PT_obj_grab"
+#     bl_label = "Grabshot"
+#     bl_parent_id = "T3D_PT_obj"
 
-    source_Name: bpy.props.StringProperty(default='Plant_FernIndian')
-    # plant_Name: bpy.props.StringProperty(default='Plant_New')
-    # snap_folder:bpy.props.StringProperty(
-    #     name="Snap Folder", subtype="DIR_PATH", default=snap_path
-    # )
-    # project_folder: bpy.props.StringProperty(name="Project Folder", description="", subtype="FILE_PATH", default="")
-    # source_Name: bpy.props.BoolProperty(default=False)
+#     # source_Name: bpy.props.StringProperty(default='Plant_FernIndian')
+#     # plant_Name: bpy.props.StringProperty(default='Plant_New')
+#     # snap_folder:bpy.props.StringProperty(
+#     #     name="Snap Folder", subtype="DIR_PATH", default=snap_path
+#     # )
+#     # project_folder: bpy.props.StringProperty(name="Project Folder", description="", subtype="FILE_PATH", default="")
+#     # source_Name: bpy.props.BoolProperty(default=False)
 
     
-    def draw(self, context):
-        layout = self.layout
-        row = layout.row(align=True)
-        # row.prop(context.scene, "t3d_snap_folder", text="")
-        row.operator(T3D_OT_Grabshot.bl_idname, icon="EXPORT", text="Shoot")
-        row = layout.row(align=True)
-        row.prop(self, "source_Name")
-        row.prop(context.scene, "t3d_prop_snaps")
-        row.operator(T3D_OT_Grabshot_ref.bl_idname, text="", icon="FILE_REFRESH")
-        row = layout.row(align=True)
-        row.operator(T3D_OT_Grabshot.bl_idname, icon="IMPORT", text="Grab")
+#     def draw(self, context):
+#         layout = self.layout
+#         row = layout.row(align=True)
+#         # row.prop(context.scene, "t3d_snap_folder", text="")
+#         row.operator(T3D_OT_Grabshot.bl_idname, icon="SNAP_EDGE", text="Shoot")
+#         # row = layout.row(align=True)
+#         # row.prop(self, "source_Name")
+#         # row.prop(context.scene, "t3d_prop_snaps")
+#         # row.operator(T3D_OT_Grabshot_ref.bl_idname, text="", icon="FILE_REFRESH")
+#         # row = layout.row(align=True)
+#         # row.operator(T3D_OT_Grabshot.bl_idname, icon="IMPORT", text="Grab")
 
         
 
@@ -96,8 +104,10 @@ class T3D_PT_Mesh(T3D_PanelInfo, Panel):
 
     def draw(self, context):
         layout = self.layout
-        col = layout.column(align=True)
-        col.label(text="Vertex Color Toolkit")
+        # col = layout.column(align=True)
+        # col.label(text="Vertex Color Toolkit")
+        row = layout.row(align=True)
+        row.operator(T3D_OT_UnLoop.bl_idname, icon="SNAP_EDGE")
 
 
 class T3D_PT_UVS(T3D_PanelInfo, Panel):
